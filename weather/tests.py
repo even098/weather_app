@@ -18,4 +18,4 @@ class TestGetWeatherAPIView(APITestCase):
         self.client.force_authenticate(user=self.user)
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(response.data['Location weather']['location'], self.user.location)
+        self.assertEqual(response.data['data']['location'], self.location.location)
