@@ -23,7 +23,7 @@ Django-приложение с REST API, которое предоставляе
 
 ### 1. Клонирование репозитория
 ```sh
-git clone <репозиторий>
+git clone https://github.com/even098/weather_app.git
 cd weather_app
 ```
 
@@ -70,7 +70,7 @@ POST /api/register/
   "username": "user1",
   "password": "securepassword",
   "role": "user",
-  "city": "London"
+  "location": "London"
 }
 ```
 
@@ -89,18 +89,6 @@ POST /api/token/
 ### 3. Получение данных о погоде
 ```http
 GET /api/weather/
-Authorization: Bearer <your_access_token>
-```
-
-## Тестирование
-Для запуска тестов используй:
-```sh
-python manage.py test
-```
-
-## Документация API
-Автоматическая документация доступна по адресу:
-```
-http://127.0.0.1:8000/swagger/
+Authorization: JWT <your_access_token>
 ```
 
