@@ -70,7 +70,7 @@ POST /api/register/
   "username": "user1",
   "password": "securepassword",
   "role": "user",
-  "location": "London"
+  "location_name": "London"
 }
 ```
 
@@ -86,9 +86,20 @@ POST /api/token/
 }
 ```
 
-### 3. Получение данных о погоде
+### 3. Добавление города, по которому будет доступна погода
+```http
+POST /api/weather/add/
+```
+#### Тело запроса:
+```json
+{
+  "location": "location_name"
+}
+```
+
+
+### 4. Получение данных о погоде
 ```http
 GET /api/weather/
 Authorization: JWT <your_access_token>
 ```
-
