@@ -40,10 +40,11 @@ pip install -r requirements.txt
 ```
 
 ### 4. Настройка переменных окружения
+Для начала нужно зарегистрироваться в ```https://weatherstack.com/``` и скопировать API ключ. Далее:
 Создай файл `.env` в корневой папке и добавь в него:
 ```env
 SECRET_KEY=your_secret_key
-DEBUG=True  # False в продакшене
+DEBUG=True  
 DB_NAME=your_db_name
 DB_USER=your_db_user
 DB_PASSWORD=your_db_password
@@ -70,7 +71,13 @@ POST /api/register/
   "username": "user1",
   "password": "securepassword",
   "role": "user",
-  "location": "London"
+  "location_name": "London"
+}
+```
+#### Пример ответа:
+```json
+{
+  "username": "user1",
 }
 ```
 
@@ -85,10 +92,61 @@ POST /api/token/
   "password": "securepassword"
 }
 ```
+#### Пример ответа:
+```json
+{
+    "refresh": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+    "access": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+}
+```
 
-### 3. Получение данных о погоде
+### 3. Добавление города, по которому будет доступна погода
+```http
+POST /api/weather/add/
+```
+#### Тело запроса:
+```json
+{
+  "location": "new york"
+}
+```
+#### Пример ответа:
+```json
+{
+    "detail": "Location successfully added.",
+    "Location weather": {
+        "location": "New York",
+        "country": "United States of America",
+        "temperature": "-6",
+        "feelslike": "-12",
+        "weather_descriptions": "Clear",
+        "wind_speed": "18",
+        "humidity": "50",
+        "visibility": "16",
+        "updated_at": "2025-02-20T06:16:27.756341Z"
+    }
+}
+```
+
+
+### 4. Получение данных о погоде
 ```http
 GET /api/weather/
 Authorization: JWT <your_access_token>
 ```
-
+#### Пример ответа:
+```json
+{
+    "data": {
+        "location": "Almaty",
+        "country": "Kazakhstan",
+        "temperature": "1",
+        "feelslike": "0",
+        "weather_descriptions": "Smoke",
+        "wind_speed": "4",
+        "humidity": "64",
+        "visibility": "3",
+        "updated_at": "2025-02-20T06:17:20.488188Z"
+    }
+}
+```
