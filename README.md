@@ -63,7 +63,7 @@ python manage.py runserver
 
 ### 1. Регистрация пользователя
 ```http
-POST /api/register/
+POST /api/registration/
 ```
 #### Тело запроса:
 ```json
